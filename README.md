@@ -1,6 +1,7 @@
 # Virtual Interaction Predictor for Enzyme Reactions (VIPER)
 
 Web Server: https://viperwebserver.com
+
 Model Weights: https://zenodo.org/records/12151573
 
 ## Local usage
