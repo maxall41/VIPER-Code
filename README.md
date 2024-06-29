@@ -11,7 +11,7 @@ Model Weights: https://zenodo.org/records/12151573
 
 Paper: https://www.biorxiv.org/content/10.1101/2024.06.21.599972v1
 
-License: CC-BY
+License: CC-BY 4.0
 
 ## Local usage
 
