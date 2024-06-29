@@ -1,0 +1,5 @@
+ankh==1.0
+fire==0.5.0
+pandas==2.2.0
+numpy==1.26.3
+torch==2.3.0+cu121
