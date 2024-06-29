@@ -1,8 +1,17 @@
 # Virtual Interaction Predictor for Enzyme Reactions (VIPER)
 
+## Abstract
+
+Enzymes, nature's catalysts, possess remarkable properties such as high stereo-, regio-, and chemo-specificity. These properties allow enzymes to greatly simplify complex synthetic processes, resulting in improved yields and reduced manufacturing costs compared to traditional chemical methods. However, the lack of experimental characterization of enzyme substrates, with only a few thousand out of tens of millions of known enzymes in Uniprot having annotated substrates, severely limits the ability of chemists to repurpose enzymes for industrial applications. Previous machine learning models aimed at predicting enzyme substrates have been hampered by poor generalization to new substrates. Here, we introduce VIPER (Virtual Interaction Predictor for Enzyme Reactivity), a model that achieves an average 34% improvement over the previous state-of-the-art model (ProSmith) in reaction prediction for unseen substrates. Furthermore, we present a novel benchmarking methodology for assessing the out-of-distribution generalization capabilities of enzyme-substrate prediction models. VIPER represents a significant advance towards the in silico prediction of enzyme-substrate compatibility, paving the way for the discovery of novel biocatalytic routes for the sustainable synthesis of high-value chemicals.
+
+
 Web Server: https://viperwebserver.com
 
 Model Weights: https://zenodo.org/records/12151573
+
+Paper: https://www.biorxiv.org/content/10.1101/2024.06.21.599972v1
+
+License: CC-BY
 
 ## Local usage
 
