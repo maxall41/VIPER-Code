@@ -3,7 +3,7 @@ import torch
 import numpy as np
 from deps.molformer import compute_molformer_emb
 from io import StringIO  
-from deps.model import create_models
+from deps.model import create_model
 import os
 import fire
 import pandas as pd
@@ -12,15 +12,10 @@ SEQ_COL = 'sequence'
 SMILES_COL = 'smiles'
 models = []
 
-def std_dev_to_confidence(std):
-    low_thresh = 0.08
-    high_thresh = 0.04
-    if std < high_thresh:
-        return "HIGH"
-    elif std > low_thresh:
-        return "LOW"
-    else:
-        return "MEDIUM"
+def calc_confidence(results):
+    epsilon = sys.float_info.min
+    entropy = -np.mean(results * np.log(results + epsilon) + (1 - results) * np.log(1 - results + epsilon))
+    return 1 - entropy
 
 def gen_ankh(seq):
     model, tokenizer = ankh.load_base_model()
@@ -43,15 +38,15 @@ def run(row):
     ankh = ankh.unsqueeze(0)
     molformer = molformer.unsqueeze(0)
     # Run Model
+    model = create_model()
     results = []
-    for model in models:
+    for forward_pass in range(forward_passes):
         result = model(ankh,molformer)
         result = result.cpu().item()
         results.append(result)
     results = np.array(results)
-    std = np.std(results)
     row['result'] = np.mean(results)
-    row['confidence'] = std_dev_to_confidence(std)
+    row['confidence'] = calc_confidence(results)
     return row
 
 def exec(input='in.csv',output="out.csv"):
