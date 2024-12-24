@@ -10,7 +10,8 @@ import pandas as pd
 
 SEQ_COL = 'sequence'
 SMILES_COL = 'smiles'
-models = []
+model = create_model()
+forward_passes = 25
 
 def calc_confidence(results):
     epsilon = sys.float_info.min
@@ -32,13 +33,11 @@ def gen_ankh(seq):
     return embeddings
 
 def run(row):
-    global models
     ankh = gen_ankh(row[SEQ_COL])
     molformer = compute_molformer_emb(row[SMILES_COL])
     ankh = ankh.unsqueeze(0)
     molformer = molformer.unsqueeze(0)
     # Run Model
-    model = create_model()
     results = []
     for forward_pass in range(forward_passes):
         result = model(ankh,molformer)
@@ -50,9 +49,7 @@ def run(row):
     return row
 
 def exec(input='in.csv',output="out.csv"):
-    global models
     df = pd.read_csv(input)
-    models = create_models()
     df = df.apply(run,axis=1)
     df.to_csv(output)
     print("Output saved!")
