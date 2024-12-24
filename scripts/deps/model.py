@@ -291,13 +291,9 @@ class DeepLPI(nn.Module):
         enzyme_activity = F.sigmoid(enzyme_activity)
         return enzyme_activity
 
-def create_models():
-    models = []
-    ensemble_size = 3
-    for i in range(ensemble_size):
-        model = DeepLPI(1024,768,dropout=0.2)
-        model.load_state_dict(torch.load(f"ensemble_model_{i}_perf_0.1284844132615304_validation_set_3_prod.pytorch"))
-        model.eval()
-        model.cuda()
-        models.append(model)
-    return models
+def create_model():
+    model = DeepLPI(1024,768,dropout=0.2)
+    model.load_state_dict(torch.load(f"ensemble_model_0_perf_0.1284844132615304_validation_set_3_prod.pytorch", map_location=torch.device('cpu')))
+    model.eval()
+    enable_dropout(model)
+    return model
