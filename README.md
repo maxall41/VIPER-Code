@@ -21,3 +21,14 @@ To do so create a new CSV file in `scripts/` with the column: `sequence` for the
 ```bash
 python scripts/VIPER_run.py --input input_csv_file.csv --output out.csv
 ```
+
+## Data standardization
+
+You can run our full data standardization pipeline with the `scripts/data/standardize.py` script like this:
+
+```python
+python scripts/data/standardize.py input_csv_path output_csv_path path_to_xtb_executable
+```
+
+Required DF columns: `SMILES`
+Added DF columns: `XTB_STANDARDIZED_SMILES`
